@@ -1,18 +1,36 @@
-pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                // Your build steps here
-            }
-        }
-    }
-    post {
-        success {
-            githubStatus('SUCCESS', 'Workflow completed successfully!')
-        }
-        failure {
-            githubStatus('FAILURE', 'Workflow failed!')
-        }
-    }
-}
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Build
+        run: |
+          # Your build steps here
+
+      - name: Run tests
+        run: |
+          # Your test steps here
+
+      - name: Report status
+        if: always()
+        uses: anothrnick/github-status-report@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          state: ${{ job.status }}
+          description: ${{ job.status }}
