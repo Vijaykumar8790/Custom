@@ -1,36 +1,15 @@
-name: CI Pipeline
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Welcome to My Website</h1>
+    <p>This is a simple example of an HTML file.</p>
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        
-      - name: Install dependencies
-        run: npm install
-        
-      - name: Build
-        run: |
-          # Your build steps here
-
-      - name: Run tests
-        run: |
-          # Your test steps here
-
-      - name: Report status
-        if: always()
-        uses: anothrnick/github-status-report@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          state: ${{ job.status }}
-          description: ${{ job.status }}
+    <script src="script.js"></script>
+</body>
+</html>
