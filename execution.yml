@@ -1,0 +1,9 @@
+execution:
+-concurrency: 25
+ ramp-up: in
+hold-for: in
+scenario: quick-test
+scenarios:
+ quick-test:
+ requests:
+  -http://blazedero.com
