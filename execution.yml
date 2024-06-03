@@ -1,1 +1,18 @@
-Hello
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                // Your build steps here
+            }
+        }
+    }
+    post {
+        success {
+            githubStatus('SUCCESS', 'Workflow completed successfully!')
+        }
+        failure {
+            githubStatus('FAILURE', 'Workflow failed!')
+        }
+    }
+}
